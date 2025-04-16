@@ -1,16 +1,19 @@
-from flask import Flask, render_template, send_file, jsonify
+from flask import Flask, jsonify, send_from_directory, send_file
 import os
+import json
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
-@app.route('/')
-def index():
-    return render_template('index.html')
-
+# Serve scenes.json
 @app.route('/scenes')
 def get_scenes():
     with open('scenes.json', 'r') as f:
-        return send_file('scenes.json', mimetype='application/json')
+        return jsonify(json.load(f))
+
+# Serve the main page
+@app.route('/')
+def index():
+    return send_from_directory('.', 'index.html')
 
 @app.route('/models/<model_name>')
 def get_model(model_name):

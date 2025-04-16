@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR College Navigation</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <!-- A-Frame library -->
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <!-- AR.js for AR capabilities -->
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+</head>
+<body>
+    <div class="ui-container">
+        <h1>AR College Navigation</h1>
+        
+        <div class="location-selectors">
+            <div class="selector-group">
+                <label for="start-location">Start Location:</label>
+                <select id="start-location"></select>
+            </div>
+            
+            <div class="selector-group">
+                <label for="end-location">End Location:</label>
+                <select id="end-location"></select>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button id="start-button" class="primary-button">Start Navigation</button>
+            <button id="ar-button" class="secondary-button" disabled>Start AR View</button>
+        </div>
+
+        <div id="distance-info" class="info-text"></div>
+        
+        <div id="compatibility-message" class="compatibility-message" style="display: none;">
+            Your device may not support AR features. Please ensure you're using a compatible device with a camera.
+        </div>
+    </div>
+
+    <!-- A-Frame Scene -->
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+        <a-entity camera></a-entity>
+    </a-scene>
+
+    <!-- Custom JavaScript -->
+    <script src="static/js/ar-navigation.js"></script>
+</body>
+</html> 
